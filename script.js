@@ -94,9 +94,33 @@ function ValidateEmail() {
         poster "Squirtle"
     */
 
-    var emailMatch = /\S+@\S+\.\S+/.exec(email);
+ //   var emailMatch = /\S+@\S+\.\S+/.exec(email);
 
-    if (!emailMatch) {
+var atSign = false; 
+var dotcom = false; 
+
+let x=1; // first character should not be @
+
+while( email[x] != '@' && x+1 < email.length )
+{ 
+    ++x; //find @ 
+}
+
+
+/* the reason for increment by 2 is because there should be at least one
+letter in between @ and the '.' ... e.g. the input st@.com is incorrect
+*/ 
+
+for(x=x+2; x<email.length; x++)
+{
+    if(email[x]=='.' && x+1<email.length) // x+1 so cannot just end with '.'
+    { 
+        dotcom = true; break; 
+    }
+
+}
+
+    if (!dotcom) {
         console.log("please enter a valid email");
     }
 
